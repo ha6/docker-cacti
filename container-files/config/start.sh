@@ -32,6 +32,8 @@ move_config_files() {
 }
 create_db(){
     log "Creating Cacti Database"
+    mysql -u $DB_USER -h $DB_ADDRESS -e "set collation_server = utf8mb4_unicode_ci;"
+    mysql -u $DB_USER -h $DB_ADDRESS -e "set character_set_client = utf8mb4;"
     mysql -u $DB_USER -h $DB_ADDRESS -e "CREATE DATABASE  IF NOT EXISTS cacti DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
     mysql -u $DB_USER -h $DB_ADDRESS -e "GRANT ALL ON cacti.* TO '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';"
     mysql -u $DB_USER -h $DB_ADDRESS -e "flush privileges;"
