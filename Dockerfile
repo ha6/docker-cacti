@@ -11,7 +11,7 @@ RUN \
 	mkdir -p /data/logs/ && \
 	curl -o /etc/yum.repos.d/CentOS-Base.repo -O http://mirrors.163.com/.help/CentOS7-Base-163.repo && \
 	yum install -y epel-release && \
-	yum install -y automake mariadb-devel mariadb gcc-core gzip help2man libtool make net-snmp-devel  \
+	yum install -y automake mariadb-devel mariadb gcc-core wget gzip help2man libtool make net-snmp-devel  \
 	m4  openssl-devel dos2unix php php-opcache php-devel php-gd php-ldap php-mbstring php-mcrypt  \
 	dejavu-fonts-common dejavu-lgc-sans-mono-fonts dejavu-sans-mono-fonts  fontpackages-filesystemfontconfig \
 	php-mysqlnd php-phpunit-PHPUnit php-pecl-xdebug php-pecl-xhprof php-snmp  \
