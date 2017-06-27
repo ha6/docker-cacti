@@ -3,7 +3,7 @@ FROM centos
 MAINTAINER Fenei <babyfenei@qq.com>
 
 ENV DB_USER=root \
-    DB_PASS=xpwl@qwer@123! \
+    DB_PASS=passwd \
     DB_ADDRESS=172.17.0.1 \
     TIMEZONE=Asia/Shanghai
 ### 安装httpd
