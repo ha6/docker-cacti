@@ -104,7 +104,7 @@ load_temple_config(){
               php -q /cacti/cli/import_template.php --filename=$filename > /dev/null
        done
 }
-change_auth_config(){
+change_auth_config() {
 log "change export auth file"
 sed -i "/include('.\/include\/auth.php');/a include('.\/include\/global.php');" /var/www/html/graph_xport.php
 sed -i "s/include('.\/include\/auth.php');/#include('.\/include\/auth.php');/" /var/www/html/graph_xport.php
@@ -137,6 +137,7 @@ if [[ $(mysql -u "${DB_USER}" -h "${DB_ADDRESS}" -e "show databases" | grep cact
     create_db
     import_db
     spine_db_update
+    change_auth_config
 fi
 # Update Cacti config
 update_cacti_db_config
