@@ -78,6 +78,7 @@ update_backup_config() {
     sed -i 's/$DB_ADDRESS/'$DB_ADDRESS'/g' /backup.sh
     sed -i 's/$DB_USER/'$DB_USER'/g' /backup.sh
     sed -i 's/$DB_PASS/'$DB_PASS'/g' /backup.sh
+    chmod +x /backup.sh
     log "backup config updated"
     fi
     }
@@ -88,6 +89,7 @@ update_export_config() {
     sed -i 's/$DB_ADDRESS/'$DB_ADDRESS'/g' /export.sh
     sed -i 's/$DB_USER/'$DB_USER'/g' /export.sh
     sed -i 's/$DB_PASS/'$DB_PASS'/g' /export.sh
+    chmod +x /export.sh
     log "export config updated"
     fi
     }
@@ -102,8 +104,14 @@ load_temple_config(){
               php -q /cacti/cli/import_template.php --filename=$filename > /dev/null
        done
 }
-
-
+change_auth_config(){
+log "change export auth file"
+sed -i "/include('.\/include\/auth.php');/a include('.\/include\/global.php');" /var/www/html/graph_xport.php
+sed -i "s/include('.\/include\/auth.php');/#include('.\/include\/auth.php');/" /var/www/html/graph_xport.php
+sed -i "/include('.\/include\/auth.php');/a include('.\/include\/global.php');" /var/www/html/graph_image.php
+sed -i "s/include('.\/include\/auth.php');/#include('.\/include\/auth.php');/" /var/www/html/graph_image.php
+log "export auth file changed"
+}
 update_cron() {
     log "Updating Cron jobs"
     # Add Cron jobs
