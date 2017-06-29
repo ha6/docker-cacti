@@ -126,6 +126,8 @@ set_timezone() {
         echo "date.timezone = ${TIMEZONE}" >> /etc/php.ini
         log "TIMEZONE set to: ${TIMEZONE}"
     fi
+    rm -rf /etc/localtime
+    ln -s  /usr/share/zoneinfo/${TIMEZONE} /etc/localtime
 }
 start_crond() {
     crond
