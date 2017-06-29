@@ -20,6 +20,8 @@ RUN \
 	yum clean all && \
     	rpm --rebuilddb && yum clean all
 
+VOLUME ["/var/www"]
+
 COPY container-files / 
 
 ### 安装cacti
